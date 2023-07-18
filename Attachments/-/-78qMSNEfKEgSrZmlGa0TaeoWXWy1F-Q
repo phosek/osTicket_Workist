@@ -1,0 +1,9 @@
+Reporting-MTA: dns;mail.cis-europe.eu
+Received-From-MTA: dns;cis-europe.eu
+Arrival-Date: Mi, 03 Okt 2018 12:17:20 +0200
+
+Final-Recipient: rfc822;ca@swisssign.net
+Last-Attempt-Date: Mi, 03 Okt 2018 12:17:21 +0200
+Action: Failed
+Status: 5.0.0
+Diagnostic-Code: smtp;550 5.0.0 #5.1.0 Address rejected.

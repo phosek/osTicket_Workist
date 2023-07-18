@@ -1,0 +1,67 @@
+Received: from CMAILB.cis-kr.local (172.30.7.72) by CMAILA.cis-kr.local
+ (172.30.7.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20 via Mailbox
+ Transport; Fri, 6 Jan 2023 16:45:34 +0100
+Received: from CMAILA.cis-kr.local (172.30.7.71) by CMAILB.cis-kr.local
+ (172.30.7.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Fri, 6 Jan
+ 2023 16:45:34 +0100
+Received: from mail.cis-europe.eu (172.30.25.50) by CMAILA.cis-kr.local
+ (172.30.7.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20 via Frontend
+ Transport; Fri, 6 Jan 2023 16:45:34 +0100
+Received: from 195.245.230.65 by mail.cis-europe.eu via connector
+ mail.cis-europe.eu (Tls12, Aes256, Sha384, DiffieHellmanEllipticKey256);
+ Fri, 06 Jan 2023 15:45:34 GMT
+Received: (qmail 11790 invoked from network); 6 Jan 2023 15:45:30 -0000
+Received: from unknown (HELO n03ukasimr02.n03.fujitsu.local) (62.60.8.146)
+  by server-10.tower-591.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP; 6 Jan 2023 15:45:30 -0000
+Received: from n03ukasimr02.n03.fujitsu.local (localhost [127.0.0.1])
+	by n03ukasimr02.n03.fujitsu.local (Postfix) with ESMTP id 6B38C1000DC
+	for <w.soukup@cis.de>; Fri,  6 Jan 2023 15:45:30 +0000 (GMT)
+Received: from WZ02DEWS01PINT (WZ02DEWS01PINT [172.25.183.29])
+	by n03ukasimr02.n03.fujitsu.local (Postfix) with ESMTP id 52F481000D7
+	for <w.soukup@cis.de>; Fri,  6 Jan 2023 15:45:30 +0000 (GMT)
+From: "services.administration@fujitsu.com"
+	<services.administration@fujitsu.com>
+To: Wolfgang Soukup <w.soukup@cis.de>
+Subject:
+	=?utf-8?B?RnVqaXRzdSBTdXBwb3J0IFBhY2sgLSBBa3RpdmllcnVuZyB2b2xsc3TDpG5k?=
+ =?utf-8?Q?ig:_BC670967-7CDF85EC?=
+Thread-Topic:
+	=?utf-8?B?RnVqaXRzdSBTdXBwb3J0IFBhY2sgLSBBa3RpdmllcnVuZyB2b2xsc3TDpG5k?=
+ =?utf-8?Q?ig:_BC670967-7CDF85EC?=
+Thread-Index: AQHZIeXqkcxqaVAC+UCe+P3LdTAa0Q==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Fri, 6 Jan 2023 16:45:30 +0100
+Message-ID: <7b4f3114-7410-44c2-a762-3b30fe90b360@CMAILA.cis-kr.local>
+Content-Language: de-DE
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AuthSource: CMAILA.cis-kr.local
+X-MS-Has-Attach:
+X-MS-Exchange-Organization-Network-Message-Id:
+	4785d49a-12fa-49aa-1d6c-08daeffd0c75
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+x-ms-exchange-organization-originalclientipaddress: 172.30.25.50
+x-ms-exchange-organization-originalserveripaddress: 172.30.7.71
+Content-Type: text/html; charset="utf-8"
+Content-ID: <623A660E5DF2CF4AB51EB7F6635E95AA@cis-kr.local>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KQXV0b21hdGlzY2gg
+Z2VuZXJpZXJ0ZSBFLU1haWwuIEJpdHRlIG5pY2h0IGF1ZiBkaWVzZSBhbnR3b3J0ZW4uPGJyPg0K
+PGJyPg0KRGllIFN1cHBvcnQgUGFjayBBa3RpdmllcnVuZyBrb25udGUgbWl0IGZvbGdlbmRlbiBE
+YXRlbiBlcmZvbGdyZWljaCBkdXJjaGdlZsO8aHJ0IHdlcmRlbjo8YnI+DQo8YnI+DQpTZXJ2aWNl
+Ojxicj4NCkZTUDpHQjNTMjBaMDBERU1CMjxicj4NClN1cHBvcnQgUGFjayAzIEphaHJlIFZvci1P
+cnQgU2VydmljZSwgOXg1LCBuw6RjaHN0ZXIgQXJiZWl0c3RhZyBBbnRyaXR0c3plaXQgZ2lsdCBp
+biBhdXNnZXfDpGhsdGVuIEzDpG5kZXJuIGluIEV1cm9wYSwgQWZyaWthIHVuZCBOYWhlciBPc3Rl
+biBmw7xyIExJRkVCT09LPGJyPg0KMTcvMDkvMjAyMTxicj4NCjxicj4NClN0YW5kb3J0IGRlciBI
+YXJkLS9Tb2Z0d2FyZTxicj4NCkNJUyBlbGVjdHJvbmljIEdtYkg8YnI+DQpFdXJvcGFyayBGaWNo
+dGVuaGFpbiBBMTU8YnI+DQpLcmVmZWxkPGJyPg0KNDc4MDc8YnI+DQpHRVJNQU5ZPGJyPg0KPGJy
+Pg0KQW5zcHJlY2hwYXJ0bmVyOjxicj4NCldvbGZnYW5nIFNvdWt1cDxicj4NCncuc291a3VwQGNp
+cy5kZTxicj4NCiYjNDM7NDIwNDgyNDY1NTk5PGJyPg0KPGJyPg0KSGFyZC0vU29mdHdhcmU6PGJy
+Pg0KRFNHRzAwODQwMTxicj4NCkxJRkVCT09LIFU3NTEyPGJyPg0KMDIvMTIvMjAyMjxicj4NCjxi
+cj4NCkZ1aml0c3U8YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
