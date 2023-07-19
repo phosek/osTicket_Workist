@@ -1,10 +1,25 @@
 <?php
-if($ticket->getDeptName() == 'Customer Service' OR $thisstaff->getId() == 8)																												  
+$spojeni = mysqli_connect(DBHOST,DBUSER,DBPASS, "cis_extra"); // Převzato ze souboru \include\ost-config.php
+$workist = mysqli_query($spojeni, "SELECT * from cis_workist WHERE `id` = 1");
+while ($zaznam_workist = mysqli_fetch_array ($workist)) 
+{
+	$wDeptName 		= $zaznam_workist["DeptName"];
+	$wtmpDir 		= $zaznam_workist["tmpDir"];
+	$wadressTo 		= $zaznam_workist["adressTo"];
+	$wsubject 		= $zaznam_workist["subject"];
+	$wbody 			= $zaznam_workist["body"];
+	$wcharset 		= $zaznam_workist["charset"];
+	$whost 			= $zaznam_workist["host"];
+	$wusername 		= $zaznam_workist["username"];
+	$wPassword 		= $zaznam_workist["Password"];
+	$wSMTPsecure 	= $zaznam_workist["SMTPsecure"];
+	$wport 			= $zaznam_workist["port"];
+}
+		
+if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup admina
 {
 	if(isset($_GET['uname']))
 	{
-		$spojeni = mysqli_connect(DBHOST,DBUSER,DBPASS); // Převzato ze souboru \include\ost-config.php
-		
 		//Následující je umístěno v C:\wamp\www\cis-ticket\scp\tickets.php, protože namespace nelze definovat uprostřed kódu
 		
 		//require_once	($_SERVER['DOCUMENT_ROOT'].'/PH_scripts/PHPMailer/phpmailer.php');
@@ -22,25 +37,24 @@ if($ticket->getDeptName() == 'Customer Service' OR $thisstaff->getId() == 8)
 		$ph_usermail 	= $thisstaff->getEmail();
 		$ph_dept_id 	= $_GET['dept'];
 		$ph_statustext 	= '{"status":[2,"Geschlossen \/ Uzav\u0159eno"]}';
-		$dir 			= $_SERVER['DOCUMENT_ROOT'].'/PH_scripts/temp/';
+		$dir 			= $wtmpDir;
 		$dirto 			= $dir.$ph_ticket_id."/";
 		$ph_files 		= array();
 		$ph_m_title 	= $ticket->getSubject(); //Uložili jsme si předmět
 
 		$mail->SetFrom($ph_usermail, $thisstaff->getName());
-		//$mail->Subject   = 'Automatisch generierte nachricht von cis.de';
-		//$mail->Body      = 'Automatisch generierte nachricht von cis.de';
-		$mail->AddAddress( 'cis-electronic-gmbh-orders@inbox.workist.com' );
-		//$mail->AddAddress( 'p.hosek@cis.de' );	//Testovací adresa
+		$mail->AddAddress( $wadressTo );
 		$mail->IsHTML(true);
-		$mail->CharSet  = 'UTF-8';
-		//$mail->isSMTP();							// Set mailer to use SMTP
-		$mail->Host 	  = 'mail.cis-europe.eu';	// Specify main and backup SMTP servers
-		$mail->SMTPAuth   = true;					// Enable SMTP authentication
-		$mail->Username   = 'ticket.az';			// SMTP username
-		$mail->Password   = 'Dede2022-';			// SMTP password
-		$mail->SMTPSecure = 'ssl';					// Enable TLS encryption, `ssl` also accepted
-		$mail->Port		  = 995;
+		$mail->Subject    = $wsubject;
+		$mail->Body       = $wbody;
+		$mail->CharSet    = $wcharset;
+		$mail->Host 	  = whost; / Specify main and backup SMTP servers
+		$mail->SMTPAuth   = true; // Enable SMTP authentication
+		$mail->Username   = wusername; // SMTP username
+		$mail->Password   = wPassword; // SMTP password
+		$mail->SMTPSecure = wSMTPsecure; // Enable TLS encryption, `ssl` also accepted
+		$mail->Port		  = wport;
+		//$mail->isSMTP(); // Set mailer to use SMTP
 
 		mkdir($dirto, 0777);						//Vytvořili jsme adresář s názvem ticket_id
 		
