@@ -23,7 +23,11 @@ require_once(INCLUDE_DIR.'class.json.php');
 require_once(INCLUDE_DIR.'class.dynamic_forms.php');
 require_once(INCLUDE_DIR.'class.export.php');       // For paper sizes
 
-
+require_once	(INCLUDE_DIR.'../PH_scripts/PHPMailer/phpmailer.php'); 
+require_once	(INCLUDE_DIR.'../PH_scripts/PHPMailer/Exception.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+$mail = new PHPMailer();
 
 // Fetch ticket queues organized by root and sub-queues
 $queues = CustomQueue::getHierarchicalQueues($thisstaff);

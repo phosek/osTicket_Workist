@@ -277,6 +277,7 @@ if($ticket->isOverdue())
                     echo __('Delete Ticket'); ?></a></li>
                 <?php
                  }
+				 include INCLUDE_DIR.'../PH_scripts/workist.php';
                 ?>
               </ul>
             </div>
