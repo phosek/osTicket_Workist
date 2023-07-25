@@ -1,5 +1,5 @@
 <?php
-$spojeni = mysqli_connect(DBHOST,DBUSER,DBPASS, "cis_extra"); // Převzato ze souboru \include\ost-config.php
+$spojeni = mysqli_connect(DBHOST, DBUSER, DBPASS, "cis_extra"); // Převzato ze souboru \include\ost-config.php
 $workist = mysqli_query($spojeni, "SELECT * from cis_workist WHERE `id` = 1");
 while ($zaznam_workist = mysqli_fetch_array ($workist)) 
 {
@@ -14,8 +14,9 @@ while ($zaznam_workist = mysqli_fetch_array ($workist))
 	$wPassword 		= $zaznam_workist["Password"];
 	$wSMTPsecure 	= $zaznam_workist["SMTPsecure"];
 	$wport 			= $zaznam_workist["port"];
+	$wmessage 		= $zaznam_workist["message"];
 }
-		
+
 if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup admina
 {
 	if(isset($_GET['uname']))
@@ -48,12 +49,12 @@ if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup
 		$mail->Subject    = $wsubject;
 		$mail->Body       = $wbody;
 		$mail->CharSet    = $wcharset;
-		$mail->Host 	  = whost; / Specify main and backup SMTP servers
+		$mail->Host 	  = $whost; // Specify main and backup SMTP servers
 		$mail->SMTPAuth   = true; // Enable SMTP authentication
-		$mail->Username   = wusername; // SMTP username
-		$mail->Password   = wPassword; // SMTP password
-		$mail->SMTPSecure = wSMTPsecure; // Enable TLS encryption, `ssl` also accepted
-		$mail->Port		  = wport;
+		$mail->Username   = $wusername; // SMTP username
+		$mail->Password   = $wPassword; // SMTP password
+		$mail->SMTPSecure = $wSMTPsecure; // Enable TLS encryption, `ssl` also accepted
+		$mail->Port		  = $wport;
 		//$mail->isSMTP(); // Set mailer to use SMTP
 
 		mkdir($dirto, 0777);						//Vytvořili jsme adresář s názvem ticket_id
@@ -65,7 +66,9 @@ if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup
 			if(is_file($del_file)) {unlink($del_file);}
 		}
 		sleep (1);
+		$spojeni->close();
 
+		$spojeni = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 		date_default_timezone_set("Europe/Prague");
 		$dnes=date("Y-m-d H:i:s");
 		$ost_thread = mysqli_query($spojeni, "SELECT * from ost_thread WHERE `object_id` = $ph_ticket_id");
@@ -76,8 +79,9 @@ if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup
 
 		//mysqli_query($spojeni, "INSERT INTO `ost_thread_event`(`thread_id`, `thread_type`, `event_id`, `staff_id`, `team_id`, `dept_id`, `topic_id`, `data`, `username`, `uid`, `uid_type`, `annulled`, `timestamp`) VALUES ('$ph_thread_id','T','2','$ph_user_id','0','$ph_dept_id','0','$ph_statustext','$ph_username','$ph_user_id','S','0','$dnes')");
 		//Vložili jsme nový event
-		mysqli_query($spojeni, "UPDATE `ost_thread` SET `lastresponse` = $dnes WHERE `ost_thread`.`object_id` = $ph_ticket_id"); //Upravili jsme datum poslední úpravy tiketu
-		mysqli_query($spojeni, "INSERT INTO `ost_thread_entry`(`pid`, `thread_id`, `staff_id`, `user_id`, `type`, `time_spent`, `time_type`, `time_bill`, `flags`, `poster`, `body`, `format`, `ip_address`, `created`) VALUES (0,'$ph_thread_id','$ph_user_id',0,'N',0,0,0,64,'$ph_owner','Anlagen sind an Workist gesendet worden','html','::1','$dnes')");
+		echo "UPDATE `ost_thread` SET `lastresponse` = $dnes WHERE `object_id` = $ph_ticket_id";
+		mysqli_query($spojeni, "UPDATE `ost_thread` SET `lastresponse` = '".$dnes."' WHERE `ost_thread`.`object_id` = $ph_ticket_id"); //Upravili jsme datum poslední úpravy tiketu
+		mysqli_query($spojeni, "INSERT INTO `ost_thread_entry`(`pid`, `thread_id`, `staff_id`, `user_id`, `type`, `time_spent`, `time_type`, `time_bill`, `flags`, `poster`, `body`, `format`, `ip_address`, `created`) VALUES (0,'$ph_thread_id','$ph_user_id',0,'N',0,0,0,64,'$ph_owner','$wmessage','html','::1','$dnes')");
 		//Vložili jsme poznámku
 		//mysqli_query($spojeni, "UPDATE `ost_ticket` SET `status_id` = '2' WHERE `ost_ticket`.`ticket_id` = $ph_ticket_id"); //Zavřeli jsme tiket
 
@@ -129,7 +133,7 @@ if($ticket->getDeptName() == $wDeptName OR $thisstaff->getId() == 8) //Přístup
 				<i class="icon-weibo"></i> <?php echo __('Workist'); ?>
 		   </a>
 		</li>
-		<?php
+		<?php 
 	}
 	else
 	{

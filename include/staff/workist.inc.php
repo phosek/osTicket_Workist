@@ -4,8 +4,8 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin()) die('Access
 
 if(isset($_POST['submit']))
 {
-	$spojeni->execute_query("UPDATE `cis_workist` SET `DeptName` = ?,      `tmpDir` = ?,      `adressTo` = ?,      `subject` = ?,      `body` = ?,      `charset` = ?,      `host` = ?,      `username` = ?,      `Password` = ?,      `SMTPsecure` = ?,      `port` = ?", 
-										     [$_POST['wDeptName'], $_POST['wtmpDir'], $_POST['wadressTo'], $_POST['wsubject'], $_POST['wbody'], $_POST['wcharset'], $_POST['whost'], $_POST['wusername'], $_POST['wPassword'], $_POST['wSMTPsecure'], $_POST['wport']]);
+	$spojeni->execute_query("UPDATE `cis_workist` SET `DeptName` = ?,      `tmpDir` = ?,      `adressTo` = ?,      `subject` = ?,      `body` = ?,      `charset` = ?,      `host` = ?,      `username` = ?,      `Password` = ?,      `SMTPsecure` = ?,      `port` = ?,      `message` = ?", 
+										     [$_POST['wDeptName'], $_POST['wtmpDir'], $_POST['wadressTo'], $_POST['wsubject'], $_POST['wbody'], $_POST['wcharset'], $_POST['whost'], $_POST['wusername'], $_POST['wPassword'], $_POST['wSMTPsecure'], $_POST['wport'], $_POST['wmessage']]);
 }
 
 $cis_workist = mysqli_query($spojeni, "SELECT * FROM `cis_workist` WHERE `id` = 1");
@@ -22,10 +22,8 @@ $cis_workist = mysqli_query($spojeni, "SELECT * FROM `cis_workist` WHERE `id` = 
 			$wPassword 		= $zaznam_workist["Password"];
 			$wSMTPsecure 	= $zaznam_workist["SMTPsecure"];
 			$wport 			= $zaznam_workist["port"];
-		}
-		
-		echo password_verify("Dede2022-", 'bZCIaLvyPQBpHpzzxDYwh9TpTcbnzcfH'); 
-?>
+			$wmessage		= $zaznam_workist["message"];
+		} ?>
 
 <form action="workist_settings.php" method="POST">
 	<?php csrf_token(); ?>
@@ -86,6 +84,10 @@ $cis_workist = mysqli_query($spojeni, "SELECT * FROM `cis_workist` WHERE `id` = 
 				<tr>
 					<td><?php echo __('Port number');?>:</td>
 					<td><input size="60" class="typeahead" id="wport" size=15 name="wport" value="<?php echo Format::htmlchars($wport); ?>" autocomplete="off"></td>
+				</tr>
+				<tr>
+					<td><?php echo __('Note in the ticket');?>:</td>
+					<td><input size="60" class="typeahead" id="wmessage" size=15 name="wmessage" value="<?php echo Format::htmlchars($wmessage); ?>" autocomplete="off"></td>
 				</tr>
 			</tbody>
 		</div>
